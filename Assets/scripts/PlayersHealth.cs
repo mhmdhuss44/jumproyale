@@ -1,9 +1,8 @@
-using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayersHealth : MonoBehaviourPunCallbacks
+public class PlayersHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 2;
     public int currentHealth;
@@ -19,14 +18,13 @@ public class PlayersHealth : MonoBehaviourPunCallbacks
 
         if (currentHealth <= 0)
         {
-            photonView.RPC("Die", RpcTarget.All);
+            Die();
         }
     }
 
-    [PunRPC]
     private void Die()
     {
-        // Destroy the player object across all the games
-        PhotonNetwork.Destroy(transform.parent.gameObject);
+        // Destroy the enemy object when it runs out of health
+        Destroy(transform.parent.gameObject);
     }
 }
