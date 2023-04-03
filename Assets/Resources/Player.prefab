@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 3632735691780963232}
   - component: {fileID: 6232916690064587583}
   - component: {fileID: 3060246204775859773}
-  - component: {fileID: 1493486141171554650}
   - component: {fileID: 7128920661392276533}
   - component: {fileID: 8357025886719074271}
   - component: {fileID: 2359065845778678230}
+  - component: {fileID: 4145259842196986820}
+  - component: {fileID: 8256522623461539052}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -142,20 +143,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1493486141171554650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3782494195908296804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 051299554577ef74c93bcbcd1aad18d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2
-  currentHealth: 2
 --- !u!114 &7128920661392276533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +218,35 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &4145259842196986820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782494195908296804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 349858a76cc161247b8513f4eadd5a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  moves: 5
+  jumpforce: 5
+--- !u!114 &8256522623461539052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782494195908296804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051299554577ef74c93bcbcd1aad18d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
+  currentHealth: 2
 --- !u!1 &5682503326389209588
 GameObject:
   m_ObjectHideFlags: 0

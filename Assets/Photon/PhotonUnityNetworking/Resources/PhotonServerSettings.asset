@@ -42,6 +42,9 @@ MonoBehaviour:
   - SyncJumpState
   - SyncJumpAction
   - SyncRotation
+  - RemovePlayer
+  - DestroyPlayer
+  - jumpAndMoveRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

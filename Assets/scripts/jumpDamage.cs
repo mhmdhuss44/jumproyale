@@ -21,7 +21,8 @@ public class jumpDamage : MonoBehaviour
     {
         if (collision.collider.CompareTag("Enemy Head")) // assuming you tagged the player's head collider as "PlayerHead"
         {
-            PlayersHealth enemyHealth = collision.collider.GetComponentInParent<PlayersHealth>();
+            PlayersHealth enemyHealth = collision.collider.transform.parent.parent.GetComponent<PlayersHealth>();
+
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damageAmount);
