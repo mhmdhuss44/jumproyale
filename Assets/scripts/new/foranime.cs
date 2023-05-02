@@ -28,7 +28,27 @@ public class foranime : MonoBehaviour
             {
                 mhmd.SetBool("iswalking", false);
             }
+            bool var = IsCollidingWithGroundOrEnemy();
+            mhmd.SetBool("jump", !var);
 
         }
     }
+
+    private bool IsCollidingWithGroundOrEnemy()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
+
+        foreach (Collider hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Ground"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
+
+
