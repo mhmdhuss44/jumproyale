@@ -8,6 +8,8 @@ public class foranime : MonoBehaviour
 
     Animator mhmd;
     PhotonView view;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask ground;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class foranime : MonoBehaviour
             {
                 mhmd.SetBool("iswalking", false);
             }
-            bool var = IsCollidingWithGroundOrEnemy();
+            bool var = isGrounded();
             mhmd.SetBool("jump", !var);
 
         }
@@ -40,6 +42,8 @@ public class foranime : MonoBehaviour
 
         foreach (Collider hitCollider in hitColliders)
         {
+
+
             if (hitCollider.CompareTag("Ground"))
             {
                 return true;
@@ -47,6 +51,11 @@ public class foranime : MonoBehaviour
         }
 
         return false;
+    }
+
+    bool isGrounded()
+    {
+        return Physics.CheckSphere(groundCheck.position, .1f, ground);
     }
 
 }
