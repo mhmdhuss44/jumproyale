@@ -13,3 +13,11 @@ we started building our code , built the player object and movments scripts also
 
 <h2>Week 4:</h2>
 we are trying to make the game multiplayer using photon servers , we almost made it  , but it's lagging a bit , we are working on improving the code . 7 hours in total
+
+<h2>Week 5-6:</h2>
+we were very busy cause of holidays and job interviews.
+
+<h2>Week 7-8:</h2>
+we added a lot , we change the design entirly , we added animations and a lot of objects , in these two weeks we worked everyday so its more than 25 hours of work!
+
+
