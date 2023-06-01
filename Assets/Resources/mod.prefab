@@ -157,9 +157,10 @@ GameObject:
   - component: {fileID: 4678147019230401021}
   - component: {fileID: 1658950873066599033}
   - component: {fileID: 2764819544459664656}
+  - component: {fileID: -3041699602452977050}
   m_Layer: 0
   m_Name: mod
-  m_TagString: Player
+  m_TagString: newplayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -389,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 2
-  currentHealth: 2
+  currentHealth: 1
 --- !u!114 &4678147019230401021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,6 +439,18 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &-3041699602452977050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804275896230453602}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3487547b6624414a9d99983aa3710d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3159331330147009227
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,17 +1,18 @@
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class PlayersHealth : MonoBehaviourPun
 {
     [SerializeField] private int maxHealth = 2;
-    public int currentHealth;
+    public float currentHealth;
 
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         
@@ -30,6 +31,8 @@ public class PlayersHealth : MonoBehaviourPun
         {
             // Destroy the player object when it runs out of health
             PhotonNetwork.Destroy(gameObject);
+            // Transition to the "Lost" scene
+            SceneManager.LoadScene("lost");
         }
     }
 }

@@ -11,7 +11,7 @@ public class HealthDrain : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("newplayer"))
         {
             playerInPlane = true;
         }
@@ -19,7 +19,7 @@ public class HealthDrain : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("newplayer"))
         {
             playerInPlane = false;
             timeSinceLastDamage = 0f;
@@ -34,7 +34,7 @@ public class HealthDrain : MonoBehaviour
             if (timeSinceLastDamage >= damageInterval)
             {
                 timeSinceLastDamage = 0f;
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                GameObject player = GameObject.FindGameObjectWithTag("newplayer");
                 player.GetComponent<PlayersHealth>().TakeDamage(damageAmount);
             }
         }
