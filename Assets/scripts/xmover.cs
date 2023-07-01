@@ -1,7 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class zliner : MonoBehaviourPun, IPunObservable
+public class xmover : MonoBehaviourPun, IPunObservable
 {
     public float targetX = 25f;  // The target x position
     public float speed = 1f;     // The speed at which the object moves
@@ -11,7 +11,7 @@ public class zliner : MonoBehaviourPun, IPunObservable
 
     private void Start()
     {
-        currentX = transform.position.z;  // Initialize the current x position
+        currentX = transform.position.x;  // Initialize the current x position
 
         if (!photonView.IsMine)
         {
@@ -33,23 +33,24 @@ public class zliner : MonoBehaviourPun, IPunObservable
                 newX = Mathf.Clamp(newX, currentX, targetX);
 
                 // Update the object's position
-                transform.position = new Vector3(transform.position.x, transform.position.y, newX);
+                transform.position = new Vector3(newX, transform.position.y, transform.position.z);
 
                 // Update the current x position
                 currentX = newX;
 
                 // Synchronize the position across the network
-                photonView.RPC("SyncPosition", RpcTarget.OthersBuffered, newX);
+                photonView.RPC("SyncPosition", RpcTarget.OthersBuffered, newX, isMoving);
             }
         }
     }
 
-    // RPC method to synchronize the position across the network
+    // RPC method to synchronize the position and isMoving flag across the network
     [PunRPC]
-    private void SyncPosition(float newX)
+    private void SyncPosition(float newX, bool newIsMoving)
     {
         currentX = newX;
-        transform.position = new Vector3(transform.position.x, transform.position.y, newX);
+        isMoving = newIsMoving;
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

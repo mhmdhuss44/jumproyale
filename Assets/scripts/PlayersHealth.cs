@@ -15,19 +15,18 @@ public class PlayersHealth : MonoBehaviourPun
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        
 
         if (currentHealth <= 0)
         {
             PhotonView pv = GetComponent<PhotonView>();
-            pv.RPC("Die", RpcTarget.All);
+            pv.RPC("Die", RpcTarget.AllBuffered, pv.ViewID);
         }
     }
 
     [PunRPC]
-    private void Die()
+    private void Die(int viewID)
     {
-        if (GetComponent<PhotonView>().IsMine)
+        if (PhotonNetwork.LocalPlayer.ActorNumber == viewID / 1000)
         {
             // Destroy the player object when it runs out of health
             PhotonNetwork.Destroy(gameObject);
@@ -36,37 +35,3 @@ public class PlayersHealth : MonoBehaviourPun
         }
     }
 }
-
-
-
-
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class PlayersHealth : MonoBehaviour
-//{
-//    [SerializeField] private int maxHealth = 2;
-//    public int currentHealth;
-
-//    private void Start()
-//    {
-//        currentHealth = maxHealth;
-//    }
-
-//    public void TakeDamage(int damage)
-//    {
-//        currentHealth -= damage;
-
-//        if (currentHealth <= 0)
-//        {
-//            Die();
-//        }
-//    }
-
-//    private void Die()
-//    {
-//        // Destroy the enemy object when it runs out of health
-//        Destroy(transform.parent.gameObject);
-//    }
-//}

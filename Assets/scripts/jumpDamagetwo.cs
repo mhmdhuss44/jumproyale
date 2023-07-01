@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class jumpDamage : MonoBehaviour
+public class jumpDamagetwo : MonoBehaviour
 {
     [SerializeField] private int damageAmount = 1;
     [SerializeField] private float moves = 5f;
@@ -21,8 +21,7 @@ public class jumpDamage : MonoBehaviour
     {
         if (collision.collider.CompareTag("Enemy Head")) // assuming you tagged the player's head collider as "PlayerHead"
         {
-            PlayersHealth enemyHealth = collision.collider.transform.parent.parent.GetComponent<PlayersHealth>();
-            CloneHealth twos = collision.collider.transform.parent.parent.GetComponent<CloneHealth>();
+            CloneHealth enemyHealth = collision.collider.transform.parent.parent.GetComponent<CloneHealth>();
 
             if (enemyHealth != null)
             {
@@ -38,25 +37,6 @@ public class jumpDamage : MonoBehaviour
                 else
                 {
                     lastJumpTime = Time.time;
-                }
-            }
-            else
-            {
-                if (twos != null)
-                {
-                    twos.TakeDamage(damageAmount);
-
-                    if (twos.currentHealth > 0)
-                    {
-                        // If the enemy is still alive, jump and move the player backward
-                        jumpAndMove();
-                        transform.Translate(Vector3.back * 2f);
-                        lastAttackTime = Time.time;
-                    }
-                    else
-                    {
-                        lastJumpTime = Time.time;
-                    }
                 }
             }
         }
