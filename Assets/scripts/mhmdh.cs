@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class mhmdh : MonoBehaviour
+public class mhmdh : MonoBehaviourPunCallbacks
 {
     Rigidbody posRb;
     [SerializeField] float moves = 3f;
     [SerializeField] float jumpforce = 7f;
-    float lastJumpTime = -2f;
+    float lastJumpTime = -3f;
     [SerializeField] Transform groundCkeck;
     [SerializeField] LayerMask Ground;
     [SerializeField] float searchRadius = 10f; // Radius to search for players
@@ -21,10 +22,23 @@ public class mhmdh : MonoBehaviour
     void Start()
     {
         posRb = GetComponent<Rigidbody>();
+
+        if (photonView.IsMine)
+        {
+            // This is the local player's object
+        }
+        else
+        {
+            // This is a remote player's object, disable unnecessary components
+            posRb.isKinematic = true;
+        }
     }
 
     void Update()
     {
+        if (!photonView.IsMine)
+            return;
+
         // Locate the nearest player with the specified tag
         Transform nearestPlayer = FindNearestPlayerWithTag(playerTag);
 
@@ -45,7 +59,7 @@ public class mhmdh : MonoBehaviour
         }
 
         float moveSpeed = 0f;
-        float distanceToPlayer = Vector3.Distance(transform.position, nearestPlayer.position);
+        float distanceToPlayer = nearestPlayer != null ? Vector3.Distance(transform.position, nearestPlayer.position) : float.MaxValue;
 
         if (distanceToPlayer > walkDistance)
         {
@@ -56,21 +70,28 @@ public class mhmdh : MonoBehaviour
         {
             // Player is close, jump towards the player
             moveSpeed = moves;
-            if (IsOnGround() && Time.time - lastJumpTime > 2)
+            if (nearestPlayer != null && IsOnGround() && Time.time - lastJumpTime > 3)
             {
-                Jump();
+                photonView.RPC("Jump", RpcTarget.All); // Call the Jump() method across the network
             }
         }
 
-        posRb.velocity = new Vector3(targetDirection.x * moveSpeed, posRb.velocity.y, targetDirection.z * moveSpeed);
+        if (nearestPlayer != null)
+        {
+            posRb.velocity = new Vector3(targetDirection.x * moveSpeed, posRb.velocity.y, targetDirection.z * moveSpeed);
+        }
     }
 
+    [PunRPC]
     void Jump()
     {
-        posRb.velocity = new Vector3(posRb.velocity.x, jumpforce, posRb.velocity.z);
-        lastJumpTime = Time.time;
-        isJumping = true;
-        jumpStartTime = Time.time;
+        if (photonView.IsMine)
+        {
+            posRb.velocity = new Vector3(posRb.velocity.x, jumpforce, posRb.velocity.z);
+            lastJumpTime = Time.time;
+            isJumping = true;
+            jumpStartTime = Time.time;
+        }
     }
 
     bool IsOnGround()
