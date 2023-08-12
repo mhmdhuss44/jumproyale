@@ -15,7 +15,7 @@ public class mhmdh : MonoBehaviourPunCallbacks
     [SerializeField] string playerTag = "newplayer"; // Tag of the players
     [SerializeField] float walkDistance = 5.0f;
 
-    bool isJumping = false;
+   // bool isJumping = false;
     float jumpStartTime = 0f;
     float jumpDuration = 1f;
 
@@ -89,7 +89,7 @@ public class mhmdh : MonoBehaviourPunCallbacks
         {
             posRb.velocity = new Vector3(posRb.velocity.x, jumpforce, posRb.velocity.z);
             lastJumpTime = Time.time;
-            isJumping = true;
+            //isJumping = true;
             jumpStartTime = Time.time;
         }
     }

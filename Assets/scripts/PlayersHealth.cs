@@ -12,6 +12,14 @@ public class PlayersHealth : MonoBehaviourPun
         currentHealth = maxHealth;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Rocket"))
+        {
+            TakeDamage(2); // Call TakeDamage function with a value of 2
+        }
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;

@@ -22,7 +22,7 @@ public class ChangeTextScript : MonoBehaviour
 
     private IEnumerator UpdateCountdown()
     {
-        while (countdownIterations < 3)
+        while (countdownIterations < 5)
         {
             countdownTimer--;
 

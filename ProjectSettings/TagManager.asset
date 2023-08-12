@@ -11,6 +11,8 @@ TagManager:
   - newplayer
   - one
   - two
+  - BridgePlane
+  - Rocket
   layers:
   - Default
   - TransparentFX

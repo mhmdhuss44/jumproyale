@@ -9,7 +9,7 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] float moves = 5f;
     [SerializeField] float jumpforce = 5f;
     float lastJumpTime = -2f;
-    float lastAttackTime = -2f;
+    //float lastAttackTime = -2f;
     [SerializeField] Transform groundCkeck;
     [SerializeField] LayerMask Ground;
     public Transform cameraTransform;
