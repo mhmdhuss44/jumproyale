@@ -1,6 +1,5 @@
 # Jump Royale
  This a game  is a part of computer graphics lab course in the University of Haifa .
-<b>note:</b> me and my parter work together, each week we have one day for working on the game so when we write 16 hours (it mean that each worked 8 hours (the half)) . 
 <h1> Weekly Jouranl </h1>
 <h2> Week 1:</h2>
 we started learning about unity , watched videos on how to use and download , also made the game pitch , and waited for it to get accepted . 16 hours in total
